@@ -234,7 +234,7 @@
       color: #333;
     }
         
-button {
+#barbutton {
       border: none;
       background-color: transparent;
       cursor: pointer;
@@ -242,10 +242,10 @@ button {
       margin-left: 10px;
     }
         
- button:hover {
+ #barbutton:hover {
       opacity: 0.7;
     }
-    button i {
+    #barbutton i {
       font-size: 18px;
       color: #4CAF50;
     }
@@ -336,7 +336,7 @@ button {
         <label for="address">Associated Address:</label>
         <input type="text" id="address" value="1A2B3C4D5E6F7G8H9I0J" readonly>
       </div>
-      <button onclick="copyAddress()">
+      <button id="barbutton" onclick="copyAddress()">
         <i class="fas fa-clipboard"></i> <!-- Clipboard Icon -->
       </button>
     </div>
