@@ -291,13 +291,16 @@
                 <!--<div id="ton-connect" style="padding-left:70px;padding-top: 20px;"></div>-->
 <!--barcode-->
        <!-- Display the uploaded barcode image -->
-    <div>
-      <img id="barcode-image" src="" alt="Barcode Image" />
+  <div class="copy-container">
+      <div class="input-container">
         <label for="address">Associated Address:</label>
-    <input type="text" id="address" value="1A2B3C4D5E6F7G8H9I0J" readonly>
-    <br><br>
-    <button onclick="copyAddress()">Copy Address</button>
+        <input type="text" id="address" value="1A2B3C4D5E6F7G8H9I0J" readonly>
+      </div>
+      <button onclick="copyAddress()">
+        <i class="fas fa-clipboard"></i> <!-- Clipboard Icon -->
+      </button>
     </div>
+  </div>
 
             
 
