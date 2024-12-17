@@ -210,6 +210,22 @@
         .close-btn:hover {
             background-color: #e5533d;
         }
+
+        #barcode-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin-top: 20px;
+            #barbutton {
+      padding: 8px 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #barbutton:hover {
+      background-color: #45a049;
     </style>
 </head>
 <body>
@@ -272,12 +288,64 @@
         <br>
            <!-- <button class="connect-button">Connect</button>-->
              <!-- TON Connect button -->
-                <div id="ton-connect" style="padding-left:70px;padding-top: 20px;"></div>
+                <!--<div id="ton-connect" style="padding-left:70px;padding-top: 20px;"></div>-->
+<!--barcode-->
+       <!-- Display the uploaded barcode image -->
+    <div>
+      <img id="barcode-image" src="" alt="Barcode Image" />
+        <label for="address">Associated Address:</label>
+    <input type="text" id="address" value="1A2B3C4D5E6F7G8H9I0J" readonly>
+    <br><br>
+    <button onclick="copyAddress()">Copy Address</button>
+    </div>
+
+            
+
+
+            <!--End Barcode-->
+
+
+
+
+            
             <br>
             <button class="close-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
+<!--barcode script-->
+     <script>
+    function loadBarcodeImage(event) {
+      // Get the file from the input
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      
+      // Read the file as a data URL
+      reader.onload = function() {
+        var img = document.getElementById('barcode-image');
+        img.src = reader.result;
+      }
+      
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
 
+    function copyAddress() {
+      // Get the address input element
+      var addressInput = document.getElementById("address");
+
+      // Select the text inside the input
+      addressInput.select();
+      addressInput.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the text
+      document.execCommand("copy");
+
+      // Alert to confirm copy action
+      alert("Address copied to clipboard!");
+    }
+  </script>
+    <!--end barcode script-->
     <!-- JavaScript to Control the Popup -->
     <script>
         // Function to Open Modal
